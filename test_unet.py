@@ -346,7 +346,7 @@ def conf_matrix(Y_gt, Y_pred, num_classes = 9):
         gt = np.asarray(gt, dtype = 'int32')
         pred = np.asarray(pred, dtype = 'int32')
 
-        conf_matrix = confusion_matrix(gt, pred)
+        conf_matrix = confusion_matrix(gt, pred, labels=[0,1,2,3,4,5,6,7,8])
         
         pixels = len(pred)
         total_pixels = total_pixels+pixels
