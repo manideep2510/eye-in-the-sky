@@ -272,10 +272,10 @@ testy_list = testy_list + crops_list
 testy = np.asarray(testy_list)
 
 
-def testing(model, trainx, trainy, testx, testy, weights_file = "model_augment.h5"):
+def testing(model, trainx, trainy, testx, testy, weights_file = "model_oneshot.h5"):
     
     pred_train_all = []
-    pred_test_all = []
+    pred_val_all = []
     
     model.load_weights(weights_file)
     
@@ -291,16 +291,18 @@ def testing(model, trainx, trainy, testx, testy, weights_file = "model_augment.h
     
     for k in range(Y_pred_val.shape[0]):
     
-        pred_test_all.append(Y_pred_val[k])
+        pred_val_all.append(Y_pred_val[k])
     
     Y_gt_val = [arr for arr in testy]
     
-    return pred_train_all, pred_test_all, Y_pred_val, Y_gt_val
+    return pred_train_all, Y_gt_train, pred_val_all, Y_gt_val
 
 #pred_train_all, pred_test_all, Y_pred_val, Y_gt_val = testing(model, trainx, trainy, testx, testy, weights_file = "model_onehot.h5")
 
 pred_train_all, Y_gt_train, pred_val_all, Y_gt_val = testing(model, trainx, trainy, testx, testy, weights_file = "model_onehot.h5")
 
+print(len(pred_train_all))
+print(len(Y_gt_train))
 
 # Convert onehot to label
 def to_class_no(y_hot_list):
