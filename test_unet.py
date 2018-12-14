@@ -320,7 +320,7 @@ def to_class_no(y_hot_list):
 def conf_matrix(Y_gt, Y_pred, num_classes = 9):
     
     total_pixels = 0
-    confusion_matrix = np.zeros((num_classes, num_classes))
+    sudo_confusion_matrix = np.zeros((num_classes, num_classes))
     
     n = len(Y_pred)
     
@@ -351,17 +351,17 @@ def conf_matrix(Y_gt, Y_pred, num_classes = 9):
         pixels = len(pred)
         total_pixels = total_pixels+pixels
         
-        confusion_matrix = confusion_matrix + conf_matrix
+        sudo_confusion_matrix = sudo_confusion_matrix + conf_matrix
         
-    final_confusion_matrix = confusion_matrix/total_pixels
+    final_confusion_matrix = sudo_confusion_matrix/total_pixels
     
     return final_confusion_matrix
 
-#confusion_matrix_train = conf_matrix(Y_gt_train, pred_train_all, num_classes = 9)
-#print(confusion_matrix_train)
+confusion_matrix_train = conf_matrix(Y_gt_train, pred_train_all, num_classes = 9)
+print(confusion_matrix_train)
 
-#confusion_matrix_test = conf_matrix(Y_gt_val, pred_val_all, num_classes = 9)
-#print(confusion_matrix_test)
+confusion_matrix_test = conf_matrix(Y_gt_val, pred_val_all, num_classes = 9)
+print(confusion_matrix_test)
 
 # Convert decimal onehot encode from prediction to actual onehot code
 
@@ -457,7 +457,7 @@ for i_ in range(len(xtest_list1)):
     
     y_pred_test_img = onehot_to_rgb(img, color_dict)
 
-    tif = TIFF.open(filelist_trainy[i_])
+    tif = TIFF.open(filelist_testx[i_])
     image2 = tif.read_image()
     
     h,w,c = image2.shape
