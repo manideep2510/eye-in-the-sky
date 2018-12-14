@@ -340,6 +340,12 @@ def conf_matrix(Y_gt, Y_pred, num_classes = 9):
         pred = to_class_no(pred)
         gt = to_class_no(gt)
         
+#        pred.tolist()
+#        gt.tolist()
+
+        gt = np.asarray(gt, dtype = 'int32')
+        pred = np.asarray(pred, dtype = 'int32')
+
         conf_matrix = confusion_matrix(gt, pred)
         
         pixels = len(pred)
@@ -351,11 +357,11 @@ def conf_matrix(Y_gt, Y_pred, num_classes = 9):
     
     return final_confusion_matrix
 
-confusion_matrix_train = conf_matrix(Y_gt_train, pred_train_all, num_classes = 9)
-print(confusion_matrix_train)
+#confusion_matrix_train = conf_matrix(Y_gt_train, pred_train_all, num_classes = 9)
+#print(confusion_matrix_train)
 
-confusion_matrix_test = conf_matrix(Y_gt_val, pred_val_all, num_classes = 9)
-print(confusion_matrix_test)
+#confusion_matrix_test = conf_matrix(Y_gt_val, pred_val_all, num_classes = 9)
+#print(confusion_matrix_test)
 
 # Convert decimal onehot encode from prediction to actual onehot code
 
@@ -385,3 +391,79 @@ def dec_to_onehot(pred_all):
     return pred_all_onehot_list
 
 
+color_dict = {0: (0, 0, 0),
+              1: (0, 125, 0),
+              2: (150, 80, 0),
+              3: (255, 255, 0),
+              4: (100, 100, 100),
+              5: (0, 255, 0),
+              6: (0, 0, 150),
+              7: (150, 150, 255),
+              8: (255, 255, 255)}
+
+def rgb_to_onehot(rgb_arr, color_dict):
+    num_classes = len(color_dict)
+    shape = rgb_arr.shape[:2]+(num_classes,)
+    print(shape)
+    arr = np.zeros( shape, dtype=np.int8 )
+    for i, cls in enumerate(color_dict):
+        arr[:,:,i] = np.all(rgb_arr.reshape( (-1,3) ) == color_dict[i], axis=1).reshape(shape[:2])
+    return arr
+
+def onehot_to_rgb(onehot, color_dict):
+    single_layer = np.argmax(onehot, axis=-1)
+    output = np.zeros( onehot.shape[:2]+(3,) )
+    for k in color_dict.keys():
+        output[single_layer==k] = color_dict[k]
+    return np.uint8(output)
+
+
+# Pred on test and save outputs
+
+weights_file = "model_onehot.h5"
+model.load_weights(weights_file)
+
+#y_pred_test_all = []
+
+for i_ in range(len(xtest_list1)):
+    
+    item = xtest_list1[i_]
+    
+    h,w,c = item.shape
+    
+    item = np.reshape(item,(1,h,w,c))
+    
+    y_pred_test_img = model.predict(item)
+    
+    ba,h,w,c = y_pred_test_img.shape
+    
+    y_pred_test_img = np.reshape(y_pred_test_img,(h,w,c))
+    
+    img = y_pred_test_img
+    h, w, c = img.shape
+        
+    for i in range(h):
+        for j in range(w):
+                
+            argmax_index = np.argmax(img[i,j])
+                
+            sudo_onehot_arr = np.zeros((9))
+                
+            sudo_onehot_arr[argmax_index] = 1
+                
+            onehot_encode = sudo_onehot_arr
+                
+            img[i,j,:] = onehot_encode
+    
+    y_pred_test_img = onehot_to_rgb(img, color_dict)
+
+    tif = TIFF.open(filelist_trainy[i_])
+    image2 = tif.read_image()
+    
+    h,w,c = image2.shape
+    
+    y_pred_test_img = y_pred_test_img[:h, :w, :]
+    
+    imx = Image.fromarray(y_pred_test_img)
+    
+    imx.save("test_outputs/out"+str(i+1)+".jpg")
