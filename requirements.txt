@@ -1,0 +1,30 @@
+All are Python 3 pakages
+
+PIL - $ pip3 install pillow
+
+matplotlib - $ python -m pip install -U matplotlib
+
+libtiff - $ pip3 install libtiff 
+
+scipy - $ python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+
+numpy - will be instaled by the avove command for scipy
+
+glob - $ pip3 install glob2
+       $ pip3 install glob3
+
+cv2 - Please refer this link "https://pypi.org/project/opencv-python/" to install the opencv pakage
+
+os - OS is python's standard library. So no need to download it.
+
+math - math is python's standard library. So no need to download it.
+
+sklearn - $pip install -U scikit-learn
+
+skimage - pip install scikit-image
+
+tensorflow - Please refer this link "https://www.tensorflow.org/install/pip" to install tensorflow
+
+keras - $ sudo pip install keras
+        (or)
+        $ pip install keras
