@@ -9,7 +9,7 @@ import glob
 import cv2
 import os
 import math
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, cohen_kappa_score
 from unet import UNet
 import skimage.io as io
 import skimage.transform as trans
@@ -125,7 +125,7 @@ def crops(a, crop_size = 128):
 
 xtrain_list = []
 
-for fname in filelist_trainx:
+for fname in filelist_trainx[:13]:
     
     # Reading the image
     tif = TIFF.open(fname)
@@ -150,7 +150,7 @@ for fname in filelist_trainx:
 
 ytrain_list = []
 
-for fname in filelist_trainy:
+for fname in filelist_trainy[:13]:
     
     # Reading the image
     tif = TIFF.open(fname)
@@ -171,11 +171,54 @@ for fname in filelist_trainy:
     ytrain_list.append(image)
     
     
-y_train = ytrain_list
-x_train = xtrain_list
+y_train = np.asarray(ytrain_list)
+x_train = np.asarray(xtrain_list)
 
-del ytrain_list
-del xtrain_list
+#del ytrain_list
+#del xtrain_list
+
+
+# Making array of all the training sat images as it is without any cropping
+    
+# Reading the image
+tif = TIFF.open(filelist_trainx[13])
+image = tif.read_image()
+    
+crop_size = 128
+    
+stride = 32
+    
+h, w, c = image.shape
+    
+n_h = int(int(h/stride))
+n_w = int(int(w/stride))
+     
+image = add_pixals(image, h, w, c, n_h, n_w, crop_size, stride)
+    
+#x_val = np.reshape(image, (1,h,w,c))
+x_val = image 
+   
+# Making array of all the training gt images as it is without any cropping
+
+# Reading the image
+tif = TIFF.open(filelist_trainy[13])
+image = tif.read_image()
+    
+crop_size = 128
+    
+stride = 32
+    
+h, w, c = image.shape
+    
+n_h = int(int(h/stride))
+n_w = int(int(w/stride))
+    
+    
+image = add_pixals(image, h, w, c, n_h, n_w, crop_size, stride)
+    
+#y_val1 = np.reshape(image, (1,h,w,c))
+y_val = image
+
 
 xtest_list1 = []
 
@@ -272,6 +315,33 @@ testy_list = testy_list + crops_list
 testy = np.asarray(testy_list)
 
 
+color_dict = {0: (0, 0, 0),
+              1: (0, 125, 0),
+              2: (150, 80, 0),
+              3: (255, 255, 0),
+              4: (100, 100, 100),
+              5: (0, 255, 0),
+              6: (0, 0, 150),
+              7: (150, 150, 255),
+              8: (255, 255, 255)}
+
+def rgb_to_onehot(rgb_arr, color_dict):
+    num_classes = len(color_dict)
+    shape = rgb_arr.shape[:2]+(num_classes,)
+    print(shape)
+    arr = np.zeros( shape, dtype=np.int8 )
+    for i, cls in enumerate(color_dict):
+        arr[:,:,i] = np.all(rgb_arr.reshape( (-1,3) ) == color_dict[i], axis=1).reshape(shape[:2])
+    return arr
+
+def onehot_to_rgb(onehot, color_dict):
+    single_layer = np.argmax(onehot, axis=-1)
+    output = np.zeros( onehot.shape[:2]+(3,) )
+    for k in color_dict.keys():
+        output[single_layer==k] = color_dict[k]
+    return np.uint8(output)
+
+
 def testing(model, trainx, trainy, testx, testy, weights_file = "model_oneshot.h5"):
     
     pred_train_all = []
@@ -285,7 +355,7 @@ def testing(model, trainx, trainy, testx, testy, weights_file = "model_oneshot.h
     
         pred_train_all.append(Y_pred_train[k])
     
-    Y_gt_train = [arr for arr in trainy]
+    Y_gt_train = [rgb_to_onehot(arr, color_dict) for arr in trainy]
     
     Y_pred_val = model.predict(testx)
     
@@ -293,16 +363,62 @@ def testing(model, trainx, trainy, testx, testy, weights_file = "model_oneshot.h
     
         pred_val_all.append(Y_pred_val[k])
     
-    Y_gt_val = [arr for arr in testy]
+    Y_gt_val = [rgb_to_onehot(arr, color_dict) for arr in testy]
     
     return pred_train_all, Y_gt_train, pred_val_all, Y_gt_val
 
+
+def testing_diffsizes(model, trainx, trainy, testx, testy, weights_file = "model_augment.h5"):
+    
+    pred_train_all = []
+    pred_test_all = []
+    
+    
+    model.load_weights(weights_file)
+    
+    for i in range(len(trainx)):
+        img = trainx[i]
+        h,w,c = img.shape
+        img = np.reshape(img, (1,h,w,c))
+        Y_pred_train = model.predict(img)
+        bb,h,w,c = Y_pred_train.shape
+        Y_pred_train = np.reshape(Y_pred_train, (h,w,c))
+        pred_train_all.append(Y_pred_train)
+    
+#    for k in range(Y_pred_train.shape[0]):
+    
+#        pred_train_all.append(Y_pred_train[k])
+    
+    Y_gt_train = [rgb_to_onehot(arr, color_dict) for arr in trainy]
+    
+    img = testx
+    h,w,c = img.shape
+    img = np.reshape(img, (1,h,w,c))
+    Y_pred_test = model.predict(img)
+    bb,h,w,c = Y_pred_test.shape
+    Y_pred_test = np.reshape(Y_pred_test, (h,w,c))
+    pred_test_all.append(Y_pred_test)
+    
+#    for k in range(Y_pred_val.shape[0]):
+    
+#        pred_test_all.append(Y_pred_val[k])
+    
+    Y_gt_val = [rgb_to_onehot(testy, color_dict)]
+    
+    return pred_train_all, Y_gt_train, pred_test_all, Y_gt_val
+
+
+
 #pred_train_all, pred_test_all, Y_pred_val, Y_gt_val = testing(model, trainx, trainy, testx, testy, weights_file = "model_onehot.h5")
 
-pred_train_all, Y_gt_train, pred_val_all, Y_gt_val = testing(model, trainx, trainy, testx, testy, weights_file = "model_onehot.h5")
+##pred_train_all, Y_gt_train, pred_val_all, Y_gt_val = testing(model, trainx, trainy, testx, testy, weights_file = "model_onehot.h5")
 
-print(len(pred_train_all))
-print(len(Y_gt_train))
+pred_train_13, Y_gt_train_13, pred_val_all, Y_gt_val = testing_diffsizes(model, x_train, y_train, x_val, y_val, weights_file = "model_onehot.h5")
+
+print(pred_val_all[0].shape)
+print(Y_gt_val[0].shape)
+#print(len(pred_train_all))
+#print(len(Y_gt_train))
 
 # Convert onehot to label
 def to_class_no(y_hot_list):
@@ -319,11 +435,17 @@ def to_class_no(y_hot_list):
     return y_class_list
 
 
+
 def conf_matrix(Y_gt, Y_pred, num_classes = 9):
     
     total_pixels = 0
+    kappa_sum = 0
     sudo_confusion_matrix = np.zeros((num_classes, num_classes))
-    
+   
+#    if len(Y_pred.shape) == 3:
+#        h,w,c = Y_pred.shape
+#        Y_pred = np.reshape(Y_pred, (1,))
+ 
     n = len(Y_pred)
     
     for i in range(n):
@@ -350,20 +472,28 @@ def conf_matrix(Y_gt, Y_pred, num_classes = 9):
 
         conf_matrix = confusion_matrix(gt, pred, labels=[0,1,2,3,4,5,6,7,8])
         
+        kappa = cohen_kappa_score(gt,pred, labels=[0,1,2,3,4,5,6,7,8])
+
         pixels = len(pred)
         total_pixels = total_pixels+pixels
         
         sudo_confusion_matrix = sudo_confusion_matrix + conf_matrix
         
+        kappa_sum = kappa_sum + kappa
+
     final_confusion_matrix = sudo_confusion_matrix/total_pixels
     
-    return final_confusion_matrix
+    final_kappa = kappa_sum/n
 
-confusion_matrix_train = conf_matrix(Y_gt_train, pred_train_all, num_classes = 9)
+    return final_confusion_matrix, final_kappa
+
+confusion_matrix_train, kappa_train = conf_matrix(Y_gt_train_13, pred_train_13, num_classes = 9)
 print(confusion_matrix_train)
+print(kappa_train)
 
-confusion_matrix_test = conf_matrix(Y_gt_val, pred_val_all, num_classes = 9)
+confusion_matrix_test, kappa_test = conf_matrix(Y_gt_val, pred_val_all, num_classes = 9)
 print(confusion_matrix_test)
+print(kappa_test)
 
 # Convert decimal onehot encode from prediction to actual onehot code
 
