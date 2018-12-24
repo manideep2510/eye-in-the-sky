@@ -64,4 +64,5 @@ We realized the problem of satellite image classification as a [semantic segment
 **The Strided Cropping:**
 
 To have sufficient training data from the given high definition images cropping is required to train the classifier which has about 31M parameters of our U-Net implementation. The crop size of 64x64 we find under-representation of the individual classes and the geometry and continuity of the objects is lost, decreasing the field of view of the convolutions.
+
 Using a cropping window of 128x128 pixels with a stride of 32 resultant of 15887 training 414 validation images.
