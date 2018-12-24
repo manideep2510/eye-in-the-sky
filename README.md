@@ -59,3 +59,19 @@ Let's now discuss
 
 We realized the problem of satellite image classification as a [semantic segmentation](https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf) problem and built semantic segmentation algorithms in deep learning to tackle this problem.
 
+### Data Processing during training
+
+**The Strided Cropping:**
+
+To have sufficient training data from the given high definition images cropping is required to train the classifier which has about 31M parameters of our U-Net implementation. The crop size of 64x64 we find under-representation of the individual classes and the geometry and continuity of the objects is lost, decreasing the field of view of the convolutions.
+
+Using a cropping window of 128x128 pixels with a stride of 32 resultant of 15887 training 414 validation images.
+
+**Image Dimensions:**
+
+Before cropping, the dimensions of training images are converted into multiples of stride for convenience during strided cropping.
+
+For the cases where the no. of crops is not the multiple of the image dimensions we initially tried zero padding , we realised that adding padding will add unwanted artifacts in the form of black pixels in training and test images leading to training on false data and image boundary.
+
+Alternatively we have correctly changed the image dimensions by adding extra pixels in the right most side and bottom of the image. So we padded the difference from the left most part of the image to it’s right deficit end and similarly for the top and bottom of the image.
+
