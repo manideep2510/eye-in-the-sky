@@ -12,6 +12,7 @@ Image Segmentation](https://arxiv.org/pdf/1505.04597.pdf) and [Pyramid Scene Par
 - [`main_unet.py`](main_unet.py) : Python code for training the algorithm with U-Net architecture including the encoding of the ground truths.
 - [`unet.py`](unet.py) : Contains our implementation of U-Net layers.
 - [`test_unet.py`](test_unet.py) : Code for Testing, calculating accuracies, calculating confusion matrices for training and validation and saving predictions by the U-Net model on training, validation and testing images.
+- [`Inter-IIT-CSRE`](Inter-IIT-CSRE) : Contains all the training, validation ad testing data.
 - [`Comparison_Test.pdf`](Comparison_Test.pdf) : Side by side comparision of the test data with the U-Net model predictions on the data.
 - [`train_predictions`](train_predictions) : U-Net Model predictions on training and validation images.
 - [`plots`](plots) : Accuracy and loss plots for training and validation for U-Net architecture.
