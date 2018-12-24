@@ -13,7 +13,7 @@ Image Segmentation](https://arxiv.org/pdf/1505.04597.pdf) and [Pyramid Scene Par
 - [`unet.py`](unet.py) : Contains our implementation of U-Net layers.
 - [`test_unet.py`](test_unet.py) : Code for Testing, calculating accuracies, calculating confusion matrices for training and validation and saving predictions by the U-Net model on training, validation and testing images.
 - [`Inter-IIT-CSRE`](Inter-IIT-CSRE) : Contains all the training, validation ad testing data.
-- [`Comparison_Test.pdf`](Comparison_Test.pdf) : Side by side comparision of the test data with the U-Net model predictions on the data.
+- [`Comparison_Test.pdf`](Comparison_Test.pdf) : Side by side comparison of the test data with the U-Net model predictions on the data.
 - [`train_predictions`](train_predictions) : U-Net Model predictions on training and validation images.
 - [`plots`](plots) : Accuracy and loss plots for training and validation for U-Net architecture.
 - [`Test_images`](Test_images), [`Test_outputs`](Test_outputs) : Contains test images and their predictions b the U-Net model.
@@ -59,6 +59,72 @@ Let's now discuss
 
 We realized the problem of satellite image classification as a [semantic segmentation](https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf) problem and built semantic segmentation algorithms in deep learning to tackle this problem.
 
+### Algorithms Implemented
+
+1. UNet - GT with RGB channels
+2. PSPNet - GT with RGB channels
+3. UNet with One Hot Encoded GT
+4. PSPNet with One Hot Encoded GT
+
+**[U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/pdf/1505.04597.pdf)**
+
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/unet.png" width="640"\>
+</p>
+
+**[Pyramid Scene Parsing Network - PSPNet](https://arxiv.org/pdf/1612.01105.pdf)**
+
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/pspnet.png" height="300" width="700"\>
+</p>
+
+## Mapping RGB Values in the ground truth to a one-hot encode vector to generate n channel encoded ground truth for training
+
+The ground truths provided are 3 channel RGB images. In the current dataset, there are only 9 unique RGB values in the ground truths as there are 9 classes that are to be classified. These 9 different RGB values are one-hot encoded to generate a 9 channel encoded ground truth with each channel representing a particular class.
+
+Below is the encoding scheme
+
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/table_onehot.png" width="640"\>
+</p>
+
+Realisation of each channel in the encoded ground truth as a class
+
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/channel_classes.png" width="900"\>
+</p>
+
+So instead of training on the RGB values of the ground truth we have converted them into the one-hot values of different classes. This approach yielded us a validation accuracy of 85% and training accuracy of 92% compared to 71% validation accuracy and 65% training accuracy when we were using the RGB ground truth values for training.
+
+This might be due to decrease in variance and mean of the ground truth of training data as it acts as an effective normalization technique. **The better performance of this training technique is also because the model is giving an output with 9 feature maps each map indicating a class, i.e, this training technique is acting as if the model is trained on each of the 9 classes separately for some extent(but here definitely the prediction on one channel which corresponds to a particular class depends on others)**.
+
+### Problems with PSPNet
+
+Our results on PSPNet for Satellite image classification:
+
+Training Accuracy - 49%
+Validation Accuracy - 60%
+
+*Reasons:*
+
+- Huge number of parameters (46M trainable params)
+- Contains a Resnet which demands more data to learn the features properly.
+- Under-fitting - We currently have very less data even after the strided cropping (15k images), so the PSPNet could not learn to segment (classify) the satellite images
+
+### Final Architecture chosen
+
+*U-Net:*
+
+- Has less number of parameters (31M)
+- Lesser number of layers than in PSPNet.
+- Best suitable for cases where the data is comparatively less, especially in the current case, training on 14 images
+
+*Modified U-Net:*
+
+- Batch Normalization before every downsampling and upsampling layers to decrease the variance and mean of the feature maps.
+- Used deconvolution layers instead of conv layers in the upsampling part of the UNet, but the results weren't good
+
+
 ### Data Processing during training
 
 **The Strided Cropping:**
@@ -71,7 +137,32 @@ Using a cropping window of 128x128 pixels with a stride of 32 resultant of 15887
 
 Before cropping, the dimensions of training images are converted into multiples of stride for convenience during strided cropping.
 
-For the cases where the no. of crops is not the multiple of the image dimensions we initially tried zero padding , we realised that adding padding will add unwanted artifacts in the form of black pixels in training and test images leading to training on false data and image boundary.
+For the cases where the no. of crops is not the multiple of the image dimensions we initially tried zero padding , we realised that adding padding will add unwanted artefacts in the form of black pixels in training and test images leading to training on false data and image boundary.
 
 Alternatively we have correctly changed the image dimensions by adding extra pixels in the right most side and bottom of the image. So we padded the difference from the left most part of the image to it’s right deficit end and similarly for the top and bottom of the image.
+
+## Results
+
+**Accuracy and Loss plots for training and validation**
+
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/plots.png" width="800"\>
+</p>
+
+
+**Confusion matrices for training and Validation**
+
+
+
+**Class Wise accuracy - Training**
+
+Class Wise accuracy With and Without considering the unclassified pixels
+
+
+
+**Class Wise accuracy - Validation**
+
+Class Wise accuracy With and Without considering the unclassified pixels
+
+
 
