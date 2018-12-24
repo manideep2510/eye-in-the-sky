@@ -409,7 +409,7 @@ def unet(shape = (None,None,4)):
 
     model = Model(input = inputs, output = conv10)
 
-    model.compile(optimizer = Adam(lr = 0.0001), loss = 'categorical_crossentropy', metrics = ['accuracy', iou])
+    model.compile(optimizer = Adam(lr = 0.0001), loss = 'categorical_crossentropy', metrics = ['accuracy'])
     
     model.summary()
     
@@ -417,7 +417,7 @@ def unet(shape = (None,None,4)):
     
     #if 'model_nocropping.h5' in filelist_modelweights:
      #   model.load_weights('model_nocropping.h5')
-    model.load_weights("model_onehot.h5")
+    ##model.load_weights("model_onehot.h5")
     return model
 
 
@@ -525,9 +525,32 @@ model.save("model_augment.h5")
 #testx = testx/np.max(testx)
 #testy = testy/np.max(testy)
 
-hist = model.fit(trainx, trainy_hot, epochs=15, validation_data = (testx, testy_hot),batch_size=64, verbose=1)
+history = model.fit(trainx, trainy_hot, epochs=20, validation_data = (testx, testy_hot),batch_size=64, verbose=1)
 model.save("model_onehot.h5")
 
+
+# list all data in history
+print(history.history.keys())
+# summarize history for accuracy
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('Model accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.savefig('acc_plot.png')
+plt.show()
+plt.close()
+# summarize history for loss
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Model loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['train', 'val'], loc='upper right')
+plt.savefig('loss_plot.png')
+plt.show()
+plt.close()
 
 #epochs = 20
 #for e in range(epochs):
