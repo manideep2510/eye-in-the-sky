@@ -178,6 +178,16 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
 </p>
 
+### An interesting observation
+
+Our model is able to predict some classes which a human annotator wasn't able to. The un-identifiable classes in the images are labeled as white pixels by the human annotator. Our model is able to predict some of these white pixels correctly as some class, but this caused a decrease in the overall accuracy as the white pixels are considered as a seperate class by the model.
+
+Here the model is able to predict the white pixels as a building which is correct and can be clearly seen in the input image
+
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/unclass_pred.png" width="750"\>
+</p>
+
 **Chech out [`Comparison_Test.pdf`](Comparison_Test.pdf) for comparision between test images and their predicted outputs by the model**
 
 <!---### Model Predictions on Testing images (Ground truths not available)--->
