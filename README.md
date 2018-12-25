@@ -156,15 +156,18 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/conf.png" width="800"\>
 </p>
 
-**Class Wise accuracy - Training**
+**Kappa Coefficient**
 
-Class Wise accuracy With and Without considering the unclassified pixels
+Kappa Coefficients With and Without considering the unclassified pixels
 
-
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/kappa.png" width="800"\>
+</p>
 
 **Class Wise accuracy - Validation**
 
 Class Wise accuracy With and Without considering the unclassified pixels
 
-
-
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/overall.png" width="800"\>
+</p>
