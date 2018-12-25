@@ -254,3 +254,11 @@ Overall Accuracy With and Without considering the unclassified pixels
 <p align="center">
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/overall.png" width="600"\>
 </p>
+
+## References
+
+[1] [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/pdf/1505.04597.pdf), Olaf Ronneberger, Philipp Fischer, and Thomas Brox
+
+[2] [Pyramid Scene Parsing Network](https://arxiv.org/pdf/1612.01105.pdf), Hengshuang Zhao, Jianping Shi, Xiaojuan Qi, Xiaogang Wang, Jiaya Jia
+
+[3] [A 2017 Guide to Semantic Segmentation with Deep Learning](http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review), Sasank Chilamkurthy
