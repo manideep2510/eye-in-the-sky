@@ -143,6 +143,32 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 
 ## Results
 
+### Model Predictions Vs Ground truths on some training and Validation images
+
+Training Example 1: Image '2.tif' from training data
+
+<p float="left">
+  <img src="images_for_doc/2.png" width="275" />
+  <img src="images_for_doc/gts/2.png" width="275" /> 
+  <img src="images_for_doc/pred2.jpg" width="275" />
+</p>
+
+Training Example 2: Image '4.tif' from training data
+
+<p float="left">
+  <img src="images_for_doc/4.png" width="275" />
+  <img src="images_for_doc/gts/4.png" width="275" /> 
+  <img src="images_for_doc/pred4.jpg" width="275" />
+</p>
+
+Validation Example: Image '14.tif' from dataset
+
+<p float="left">
+  <img src="images_for_doc/14.png" width="275" />
+  <img src="images_for_doc/gts/14.png" width="275" /> 
+  <img src="images_for_doc/pred14.jpg" width="275" />
+</p>
+
 **Accuracy and Loss plots for training and validation**
 
 <p align="center">
@@ -161,13 +187,13 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 Kappa Coefficients With and Without considering the unclassified pixels
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/kappa.png" width="800"\>
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/kappa.png" width="600"\>
 </p>
 
-**Class Wise accuracy - Validation**
+**Overall Accuracy**
 
-Class Wise accuracy With and Without considering the unclassified pixels
+Overall Accuracy With and Without considering the unclassified pixels
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/overall.png" width="800"\>
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/overall.png" width="600"\>
 </p>
