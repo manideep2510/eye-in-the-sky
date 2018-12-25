@@ -178,32 +178,35 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
 </p>
 
-### Model Predictions on Testing images (Ground truths not available)
+**Chech out [`Comparison_Test.pdf`](Comparison_Test.pdf) for comparision between test images and their predicted outputs by the model**
 
+<!---### Model Predictions on Testing images (Ground truths not available)--->
+
+<!--- 
 <p float="left">
   <img src="Test_images/1.png" width="200" />
   <img src="Test_outputs/1.jpg" width="200" /> 
   <img src="Test_images/2.png" width="200" />
   <img src="Test_outputs/2.jpg" width="200" />
 </p>
+--->
 
----
-
+<!---
 <p float="left">
   <img src="Test_images/3.png" width="200" />
   <img src="Test_outputs/3.jpg" width="200" />
   <img src="Test_images/4.png" height="220" width="200" />
   <img src="Test_outputs/4.jpg" height="220" width="200" /> 
 </p>
+--->
 
----
-
+<!---
 <p float="left">
   <img src="Test_images/5.png" width="200" />
   <img src="Test_outputs/5.jpg" width="200" />
   <img src="Test_images/6.png" height="250" width="200" />
   <img src="Test_outputs/6.jpg" height="250" width="200" />
-</p>
+</p> --->
 
 <!---Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
@@ -214,19 +217,19 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 ![agaksbmsnbc](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_images/5.png)  |  ![ajsvsdsdddhv](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_outputs/5.jpg)
 ![agaksbmsnbc](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_images/6.png)  |  ![ajsvsdsdddhv](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_outputs/6.jpg)--->
 
-**Accuracy and Loss plots for training and validation**
+### Accuracy and Loss plots for training and validation
 
 <p align="center">
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/plots.png" width="800"\>
 </p>
 
-**Confusion matrices for training**
+### Confusion matrices for training
 
 <p align="center">
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/conf.png" width="800"\>
 </p>
 
-**Kappa Coefficient**
+### Kappa Coefficient
 
 Kappa Coefficients With and Without considering the unclassified pixels
 
@@ -234,7 +237,7 @@ Kappa Coefficients With and Without considering the unclassified pixels
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/kappa.png" width="600"\>
 </p>
 
-**Overall Accuracy**
+### Overall Accuracy
 
 Overall Accuracy With and Without considering the unclassified pixels
 
