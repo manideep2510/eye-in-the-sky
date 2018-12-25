@@ -152,6 +152,9 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
   <img src="images_for_doc/gts/2.png" width="275" /> 
   <img src="images_for_doc/pred2.jpg" width="275" />
 </p>
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
+</p>
 
 **Training Example 2: Image '4.tif' from training data**
 
@@ -159,6 +162,20 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
   <img src="images_for_doc/4.png" width="275" />
   <img src="images_for_doc/gts/4.png" width="275" /> 
   <img src="images_for_doc/pred4.jpg" width="275" />
+</p>
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
+</p>
+
+**Validation Example: Image '14.tif' from dataset**
+
+<p float="left">
+  <img src="images_for_doc/14.png" width="275" />
+  <img src="images_for_doc/gts/14.png" width="275" /> 
+  <img src="images_for_doc/pred14.jpg" width="275" />
+</p>
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
 </p>
 
 ### Model Predictions on Testing images (Ground truths not available)
@@ -175,8 +192,8 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 <p float="left">
   <img src="Test_images/3.png" width="200" />
   <img src="Test_outputs/3.jpg" width="200" />
-  <img src="Test_images/4.png" width="200" />
-  <img src="Test_outputs/4.jpg" width="200" /> 
+  <img src="Test_images/4.png" height="220" width="200" />
+  <img src="Test_outputs/4.jpg" height="220" width="200" /> 
 </p>
 
 ---
@@ -184,17 +201,18 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 <p float="left">
   <img src="Test_images/5.png" width="200" />
   <img src="Test_outputs/5.jpg" width="200" />
-  <img src="Test_images/6.png" width="200" />
-  <img src="Test_outputs/6.jpg" width="200" />
+  <img src="Test_images/6.png" height="250" width="200" />
+  <img src="Test_outputs/6.jpg" height="250" width="200" />
 </p>
 
-**Validation Example: Image '14.tif' from dataset**
-
-<p float="left">
-  <img src="images_for_doc/14.png" width="275" />
-  <img src="images_for_doc/gts/14.png" width="275" /> 
-  <img src="images_for_doc/pred14.jpg" width="275" />
-</p>
+<!---Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![agaksbmsnbc](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_images/1.png)  |  ![ajsvsdsdddhv](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_outputs/1.jpg)
+![agaksbmsnbc](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_images/2.png)  |  ![ajsvsdsdddhv](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_outputs/2.jpg)
+![agaksbmsnbc](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_images/3.png)  |  ![ajsvsdsdddhv](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_outputs/3.jpg)
+![agaksbmsnbc](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_images/4.png)  |  ![ajsvsdsdddhv](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_outputs/4.jpg)
+![agaksbmsnbc](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_images/5.png)  |  ![ajsvsdsdddhv](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_outputs/5.jpg)
+![agaksbmsnbc](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_images/6.png)  |  ![ajsvsdsdddhv](https://github.com/manideep2510/eye-in-the-sky/blob/master/Test_outputs/6.jpg)--->
 
 **Accuracy and Loss plots for training and validation**
 
