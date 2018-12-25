@@ -145,7 +145,7 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 
 ### Model Predictions Vs Ground truths on some training and Validation images
 
-Training Example 1: Image '2.tif' from training data
+**Training Example 1: Image '2.tif' from training data**
 
 <p float="left">
   <img src="images_for_doc/2.png" width="275" />
@@ -153,7 +153,7 @@ Training Example 1: Image '2.tif' from training data
   <img src="images_for_doc/pred2.jpg" width="275" />
 </p>
 
-Training Example 2: Image '4.tif' from training data
+**Training Example 2: Image '4.tif' from training data**
 
 <p float="left">
   <img src="images_for_doc/4.png" width="275" />
@@ -161,7 +161,34 @@ Training Example 2: Image '4.tif' from training data
   <img src="images_for_doc/pred4.jpg" width="275" />
 </p>
 
-Validation Example: Image '14.tif' from dataset
+### Model Predictions on Testing images (Ground truths not available)
+
+<p float="left">
+  <img src="Test_images/1.png" width="200" />
+  <img src="Test_outputs/1.jpg" width="200" /> 
+  <img src="Test_images/2.png" width="200" />
+  <img src="Test_outputs/2.jpg" width="200" />
+</p>
+
+---
+
+<p float="left">
+  <img src="Test_images/3.png" width="200" />
+  <img src="Test_outputs/3.jpg" width="200" />
+  <img src="Test_images/4.png" width="200" />
+  <img src="Test_outputs/4.jpg" width="200" /> 
+</p>
+
+---
+
+<p float="left">
+  <img src="Test_images/5.png" width="200" />
+  <img src="Test_outputs/5.jpg" width="200" />
+  <img src="Test_images/6.png" width="200" />
+  <img src="Test_outputs/6.jpg" width="200" />
+</p>
+
+**Validation Example: Image '14.tif' from dataset**
 
 <p float="left">
   <img src="images_for_doc/14.png" width="275" />
@@ -174,7 +201,6 @@ Validation Example: Image '14.tif' from dataset
 <p align="center">
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/plots.png" width="800"\>
 </p>
-
 
 **Confusion matrices for training**
 
