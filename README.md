@@ -150,9 +150,11 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 </p>
 
 
-**Confusion matrices for training and Validation**
+**Confusion matrices for training**
 
-
+<p align="center">
+    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/conf.png" width="800"\>
+</p>
 
 **Class Wise accuracy - Training**
 
