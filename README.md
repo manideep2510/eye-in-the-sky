@@ -44,6 +44,12 @@ To test the U-Net model, calculating accuracies, calculating confusion matrices 
 $ python3 test_unet.py
 ```
 
+**NOTE**: You might get an error `xrange is not defined` while running our code. This error is not due to errors in our code but due to not up to date python package named `libtiff` (some parts of the source code of the package are in python2 and some are in python3) which we used to read the dataset which in which the images are in .tif format. We were not able to use other libraries like openCV or PIL to read the images as they are not properly supporting to read the 4-channel .tif images.
+
+This error can be resolved by editing the source code of the `libtiff` library. 
+
+Go to the file in the source code of the library from where the error arises (the file name will be displayed in the terminal when it is showing the error) and replace all the ```xrange()``` (python2) functions in the file to ```range()``` (python3)
+
 ## Now, let's discuss!
 Let's now discuss 
 
@@ -159,7 +165,7 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 
 **Training Example 2: Image '4.tif' from training data**
 
-<p float="center">
+<p align="center">
   <img src="images_for_doc/4.png" width="270" />
   <img src="images_for_doc/gts/4.png" width="270" /> 
   <img src="images_for_doc/pred4.jpg" width="270" />
@@ -171,7 +177,7 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 
 **Validation Example: Image '14.tif' from dataset**
 
-<p float="center">
+<p align="center">
   <img src="images_for_doc/14.png" width="270" />
   <img src="images_for_doc/gts/14.png" width="270" /> 
   <img src="images_for_doc/pred14.jpg" width="270" />
@@ -263,10 +269,6 @@ Overall Accuracy With and Without considering the unclassified pixels
 - Need to add regularization methods like L2 regularizarion and droupout and check the performance
 
 - Implement an algorithm to automatically detect all the unique RGB values in the ground truths and onehot encode them instead of manually finding the RGB values.
-
-**NOTE**: You might get an error while running our codes called "xrange is not defined". This error is not due to errors in our code but due to not updated python package named "libtiff" (some parts of the source code of the package are in python2 and some are in python3) which we used to read the dataset which in which the images are in .tif format. We were not able to use other libraries like openCV or PIL to read the images as they are not properly supporting to read the 4-channel .tif images.
-This error can be resolved by editing the source code of the "libtiff" library. 
-Go to the file in the source code of the library from where the error arises (the file name will be displayed in the terminal when it is showing the error) and replace all the "xrange()" (python2) functions in the file to "range()" (python3)
 
 ## References
 
