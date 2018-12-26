@@ -255,6 +255,16 @@ Overall Accuracy With and Without considering the unclassified pixels
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/overall.png" width="600"\>
 </p>
 
+### Further improvements in the current work
+
+- Need to add regularization methods like L2 regularizarion and droupout and check the performance
+
+- Implement an algorithm to automatically detect all the unique RGB values in the ground truths and onehot encode them instead of manually finding the RGB values.
+
+**NOTE**: You might get an error while running our codes called "xrange is not defined". This error is not due to errors in our code but due to not updated python package named "libtiff" (some parts of the source code of the package are in python2 and some are in python3) which we used to read the dataset which in which the images are in .tif format. We were not able to use other libraries like openCV or PIL to read the images as they are not properly supporting to read the 4-channel .tif images.
+This error can be resolved by editing the source code of the "libtiff" library. 
+Go to the file in the source code of the library from where the error arises (the file name will be displayed in the terminal when it is showing the error) and replace all the "xrange()" (python2) functions in the file to "range()" (python3)
+
 ## References
 
 [1] [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/pdf/1505.04597.pdf), Olaf Ronneberger, Philipp Fischer, and Thomas Brox
