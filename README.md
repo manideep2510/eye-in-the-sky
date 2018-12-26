@@ -152,7 +152,7 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
   <img src="images_for_doc/gts/2.png" width="275" /> 
   <img src="images_for_doc/pred2.jpg" width="275" />
 </p>
-<p align="center">
+<p float="center">
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
 </p>
 
