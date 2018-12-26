@@ -147,22 +147,22 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 
 **Training Example 1: Image '2.tif' from training data**
 
-<p float="left">
-  <img src="images_for_doc/2.png" width="275" />
-  <img src="images_for_doc/gts/2.png" width="275" /> 
-  <img src="images_for_doc/pred2.jpg" width="275" />
+<p float="center">
+  <img src="images_for_doc/2.png" width="270" />
+  <img src="images_for_doc/gts/2.png" width="270" /> 
+  <img src="images_for_doc/pred2.jpg" width="270" />
 </p>
 
 <p align="center">
-    <img src="images_for_doc/label.png" width="750"\>
+    <img src="images_for_doc/label.png" width="750" />
 </p>
 
 **Training Example 2: Image '4.tif' from training data**
 
-<p float="left">
-  <img src="images_for_doc/4.png" width="275" />
-  <img src="images_for_doc/gts/4.png" width="275" /> 
-  <img src="images_for_doc/pred4.jpg" width="275" />
+<p float="center">
+  <img src="images_for_doc/4.png" width="270" />
+  <img src="images_for_doc/gts/4.png" width="270" /> 
+  <img src="images_for_doc/pred4.jpg" width="270" />
 </p>
 
 <p align="center">
@@ -171,10 +171,10 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 
 **Validation Example: Image '14.tif' from dataset**
 
-<p float="left">
-  <img src="images_for_doc/14.png" width="275" />
-  <img src="images_for_doc/gts/14.png" width="275" /> 
-  <img src="images_for_doc/pred14.jpg" width="275" />
+<p float="center">
+  <img src="images_for_doc/14.png" width="270" />
+  <img src="images_for_doc/gts/14.png" width="270" /> 
+  <img src="images_for_doc/pred14.jpg" width="270" />
 </p>
 
 <p align="center">
