@@ -255,7 +255,7 @@ Overall Accuracy With and Without considering the unclassified pixels
     <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/overall.png" width="600"\>
 </p>
 
-### Further improvements in the current work
+### Further improvements to be done in the current work
 
 - Need to add regularization methods like L2 regularizarion and droupout and check the performance
 
