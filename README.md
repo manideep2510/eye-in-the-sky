@@ -147,7 +147,7 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
 
 **Training Example 1: Image '2.tif' from training data**
 
-<p float="center">
+<p align="center">
   <img src="images_for_doc/2.png" width="270" />
   <img src="images_for_doc/gts/2.png" width="270" /> 
   <img src="images_for_doc/pred2.jpg" width="270" />
