@@ -69,13 +69,13 @@ We realized the problem of satellite image classification as a [semantic segment
 **[U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/pdf/1505.04597.pdf)**
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/unet.png" width="640"\>
+    <img src="images_for_doc/unet.png" width="640"\>
 </p>
 
 **[Pyramid Scene Parsing Network - PSPNet](https://arxiv.org/pdf/1612.01105.pdf)**
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/pspnet.png" height="300" width="700"\>
+    <img src="images_for_doc/pspnet.png" height="300" width="700"\>
 </p>
 
 ## Mapping RGB Values in the ground truth to a one-hot encode vector to generate n channel encoded ground truth for training
@@ -85,13 +85,13 @@ The ground truths provided are 3 channel RGB images. In the current dataset, the
 Below is the encoding scheme
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/table_onehot.png" width="640"\>
+    <img src="images_for_doc/table_onehot.png" width="640"\>
 </p>
 
 Realisation of each channel in the encoded ground truth as a class
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/channel_classes.png" width="900"\>
+    <img src="images_for_doc/channel_classes.png" width="900"\>
 </p>
 
 So instead of training on the RGB values of the ground truth we have converted them into the one-hot values of different classes. This approach yielded us a validation accuracy of 85% and training accuracy of 92% compared to 71% validation accuracy and 65% training accuracy when we were using the RGB ground truth values for training.
@@ -152,8 +152,8 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
   <img src="images_for_doc/gts/2.png" width="275" /> 
   <img src="images_for_doc/pred2.jpg" width="275" />
 </p>
-<p float="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
+<p align="center">
+    <img src="images_for_doc/label.png" width="750"\>
 </p>
 
 **Training Example 2: Image '4.tif' from training data**
@@ -164,7 +164,7 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
   <img src="images_for_doc/pred4.jpg" width="275" />
 </p>
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
+    <img src="images_for_doc/label.png" width="750"\>
 </p>
 
 **Validation Example: Image '14.tif' from dataset**
@@ -175,7 +175,7 @@ Alternatively we have correctly changed the image dimensions by adding extra pix
   <img src="images_for_doc/pred14.jpg" width="275" />
 </p>
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/label.png" width="750"\>
+    <img src="images_for_doc/label.png" width="750"\>
 </p>
 
 ### An interesting observation
@@ -185,7 +185,7 @@ Our model is able to predict some classes which a human annotator wasn't able to
 Here the model is able to predict the white pixels as a building which is correct and can be clearly seen in the input image
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/unclass_pred.png" width="750"\>
+    <img src="images_for_doc/unclass_pred.png" width="750"\>
 </p>
 
 **Chech out [`Comparison_Test.pdf`](Comparison_Test.pdf) for comparision between test images and their predicted outputs by the model**
@@ -230,13 +230,13 @@ Here the model is able to predict the white pixels as a building which is correc
 ### Accuracy and Loss plots for training and validation
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/plots.png" width="800"\>
+    <img src="plots.png" width="800"\>
 </p>
 
 ### Confusion matrices for training
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/conf.png" width="800"\>
+    <img src="images_for_doc/conf.png" width="800"\>
 </p>
 
 ### Kappa Coefficient
@@ -244,7 +244,7 @@ Here the model is able to predict the white pixels as a building which is correc
 Kappa Coefficients With and Without considering the unclassified pixels
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/kappa.png" width="600"\>
+    <img src="images_for_doc/kappa.png" width="600"\>
 </p>
 
 ### Overall Accuracy
@@ -252,7 +252,7 @@ Kappa Coefficients With and Without considering the unclassified pixels
 Overall Accuracy With and Without considering the unclassified pixels
 
 <p align="center">
-    <img src="https://github.com/manideep2510/eye-in-the-sky/blob/master/images_for_doc/overall.png" width="600"\>
+    <img src="images_for_doc/overall.png" width="600"\>
 </p>
 
 ### Further improvements to be done in the current work
