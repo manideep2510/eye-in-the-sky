@@ -130,7 +130,7 @@ Validation Accuracy - 60%
 - Batch Normalization before every downsampling and upsampling layers to decrease the variance and mean of the feature maps.
 - Used deconvolution layers instead of conv layers in the upsampling part of the UNet, but the results weren't good
 
-### About the Dataset and Training and Validation split
+## About the Dataset, Training and Validation split
 
 For training and validation we have used the 14 '.tif' images in the folder [`Inter-IIT-CSRE/The-Eye-in-the-Sky-dataset`](Inter-IIT-CSRE/The-Eye-in-the-Sky-dataset). **For training we have used first 13 images in the dataset and for validation, 14th image is used**.
 
