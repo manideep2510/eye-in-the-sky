@@ -132,13 +132,15 @@ Validation Accuracy - 60%
 
 ## About the Dataset, Training and Validation split
 
-For training and validation we have used the 14 '.tif' images in the folder [`Inter-IIT-CSRE/The-Eye-in-the-Sky-dataset`](Inter-IIT-CSRE/The-Eye-in-the-Sky-dataset). **For training we have used first 13 images in the dataset and for validation, 14th image is used**.
+For training and validation we have used the 14 '.tif' images in the folder [`Inter-IIT-CSRE/The-Eye-in-the-Sky-dataset`](Inter-IIT-CSRE/The-Eye-in-the-Sky-dataset). 
+
+**For training we have used first 13 images in the dataset and for validation, 14th image is used**.
 
 Each satelite images in the folder [`sat`](Inter-IIT-CSRE/The-Eye-in-the-Sky-dataset/sat) contains 4 channels namely R (Band 1),G (Band 2),B (Band 3) and NIR (Band 4).
 
 The ground truth images in [`gt`](Inter-IIT-CSRE/The-Eye-in-the-Sky-dataset/gt) directory are RGB images and depict 8 classes - Roads, Buildings, Trees, Grass, Bare Soil, Water, Railways and Swimming pools
 
-The reason we have considered only one image (14th image) as validation image is that it is one of the smallest images in the dataset and we do not want to leave less data fo training as the dataset is pretty small. The validation set (14th image) we have considered does not have 3 classes (Bare soil, Rail, Swimmimg poll) in it which have pretty high training accuracies. The validation accuracy would have been high if we would have considered a image with all the classes in it(No image in the dataset contains all the classs, there is atleast one class missing in all the images).
+The reason we have considered only one image (14th image) as validation set is because it is one of the smallest images in the dataset and we do not want to leave less data fo training as the dataset is pretty small. The validation set (14th image) we have considered does not have 3 classes (Bare soil, Rail, Swimmimg poll) in it which have pretty high training accuracies. The validation accuracy would have been better if we would have considered a image with all the classes in it(No image in the dataset contains all the classs, there is atleast one class missing in all the images).
 
 ### Data Processing during training
 
