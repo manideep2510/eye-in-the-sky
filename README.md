@@ -83,7 +83,7 @@ We realized the problem of satellite image classification as a [semantic segment
 **[Pyramid Scene Parsing Network - PSPNet](https://arxiv.org/pdf/1612.01105.pdf)**
 
 <p align="center">
-    <img src="images_for_doc/pspnet.png" height="300" width="700" />
+    <img src="images_for_doc/pspnet.png" width="850" />
 </p>
 
 ## Mapping RGB Values in the ground truth to a one-hot encode vector to generate n channel encoded ground truth for training
