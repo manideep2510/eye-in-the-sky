@@ -46,11 +46,22 @@ To test the U-Net model, calculating accuracies, calculating confusion matrices 
 $ python3 test_unet.py
 ```
 
-**NOTE**: You might get an error `xrange is not defined` while running our code. This error is not due to errors in our code but due to not up to date python package named `libtiff` (some parts of the source code of the package are in python2 and some are in python3) which we used to read the dataset which in which the images are in .tif format. We were not able to use other libraries like openCV or PIL to read the images as they are not properly supporting to read the 4-channel .tif images.
+`**NOTE**: You might get an error `xrange is not defined` while running our code. This error is not due to errors in our code but due to not up to date python package named `libtiff` (some parts of the source code of the package are in python2 and some are in python3) which we used to read the dataset which in which the images are in .tif format. We were not able to use other libraries like openCV or PIL to read the images as they are not properly supporting to read the 4-channel .tif images.
 
 This error can be resolved by editing the source code of the `libtiff` library. 
 
-Go to the file in the source code of the library from where the error arises (the file name will be displayed in the terminal when it is showing the error) and replace all the ```xrange()``` (python2) functions in the file to ```range()``` (python3)
+Go to the file in the source code of the library from where the error arises (the file name will be displayed in the terminal when it is showing the error) and replace all the ```xrange()``` (python2) functions in the file to ```range()``` (python3)`
+
+## Pre-trained Model
+
+We are providing some reasonably good pre-trained weights here so that the users don't need to train from scratch.
+
+| Description   | Task              | Dataset             | Model                                                        |
+| ------------- | ----------------- | ------------------- | ------------------------------------------------------------ |
+| UNet Architecture | Satellite Image Classification | IITB dataset (Refer [`Inter-IIT-CSRE`](Inter-IIT-CSRE) folder) | [download (.h5)](https://drive.google.com/file/d/1U21Bwchcm96-Nz1SVEo0IvSoPyqqA7gm/view?usp=sharing) |
+
+To use the pre-trained weights, change the name of the .h5 (weights file) file mentioned in [`test_unet.py`](test_unet.py) to match the name of the weights file you have downloaded where ever required.
+
 
 ## Now, let's discuss!
 Let's now discuss 
