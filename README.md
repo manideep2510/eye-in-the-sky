@@ -46,7 +46,7 @@ To test the U-Net model, calculating accuracies, calculating confusion matrices 
 $ python3 test_unet.py
 ```
 
-### Note : 
+## Note : 
 
 You might get an error `xrange is not defined` while running our code. This error is not due to errors in our code but due to not up to date python package named `libtiff` (some parts of the source code of the package are in python2 and some are in python3) which we used to read the dataset which in which the images are in .tif format. We were not able to use other libraries like openCV or PIL to read the images as they are not properly supporting to read the 4-channel .tif images.
 
