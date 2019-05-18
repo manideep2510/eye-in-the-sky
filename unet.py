@@ -77,7 +77,7 @@ def UNet(shape = (None,None,4)):
     conv9 = BatchNormalization()(conv9)
 
     # Output layer of the U-Net with a softmax activation
-    conv10 = Conv2D(3, 1, activation = 'softmax')(conv9)
+    conv10 = Conv2D(9, 1, activation = 'softmax')(conv9)
 
     model = Model(input = inputs, output = conv10)
 
