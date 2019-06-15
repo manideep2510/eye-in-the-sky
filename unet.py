@@ -16,7 +16,8 @@ from keras.layers import *
 from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras.preprocessing.image import ImageDataGenerator
-from keras import backend as keras
+from keras import backend as K
+from iou import iou
 #%matplotlib inline
 
 
