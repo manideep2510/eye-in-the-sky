@@ -10,5 +10,5 @@ glob3
 opencv-python==4.1.0.25
 scikit-learn
 scikit-image==0.15.0
-tensorflow-gpu==1.4.0
+tensorflow-gpu==1.15.4
 Keras==2.1.3
