@@ -7,7 +7,7 @@ pandas==0.24.2
 sympy==1.4
 glob2
 glob3
-opencv-python==4.1.0.25
+opencv-python==4.1.1.26
 scikit-learn
 scikit-image==0.15.0
 tensorflow-gpu==1.4.0
